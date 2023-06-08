@@ -26,27 +26,33 @@ public class animation_spaceman : MonoBehaviour
         {
 
         }
-        if (Input.GetKey(KeyCode.D) && groundhit.collider)//rightmove
+        if (groundhit.collider)//rightmove
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                Statuschange("dashR");
-            }
-            else
-            {
-                Statuschange("walkR");
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    Statuschange("dashR");
+                }
+                else
+                {
+                    Statuschange("walkR");
+                }
             }
         }
-        if (Input.GetKey(KeyCode.A) && groundhit.collider)//leftmove
+        if (groundhit.collider)//rightmove
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Statuschange("dashL");
-            }
-            else
-            {
-                Statuschange("walkL");
-            }
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                {
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        Statuschange("dashL");
+                    }
+                    else
+                    {
+                        Statuschange("walkL");
+                    }
+                }
         }
         if (_rb.velocity.x <= 0.5f && _rb.velocity.x >= -0.5f)//anim_static
         {
