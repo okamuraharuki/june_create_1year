@@ -1,31 +1,102 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class animation_spaceman : MonoBehaviour
 {
     [SerializeField] LayerMask _groundlayer = 0;
     [SerializeField] Vector2 _groundline = Vector2.down;
+    [SerializeField] LayerMask _orelayer;
+    [SerializeField] Vector2 _Mline = Vector2.right;
     Animator _anim;
     Rigidbody2D _rb;
-    int _nowAnimation = 0;
+    public int _nowAnimation = 0;
+    bool _Lcheck = false;
+    bool _Mstart = false;
+    GameObject gameobject_ore;
+    move_spaceman move_Spaceman;
+    oreStatus _orestatus;
     void Start()
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+        move_Spaceman = this.gameObject.GetComponent<move_spaceman>();
+    }
+    private void Update()
+    {
+        Mine();
     }
     void FixedUpdate()
     {
         Move();
     }
+    void Mine()
+    {
+        if (_nowAnimation % 2 != 0)
+        {
+            _Mline = Vector2.left;
+            _Lcheck = true;
+        }
+        else
+        {
+            _Mline = Vector2.right;
+            _Lcheck = false;
+        }
+        Vector2 start = this.transform.position;
+        Debug.DrawLine(start, start + _Mline);
+        RaycastHit2D Mhit = Physics2D.Linecast(start, start + _Mline, _orelayer);
+        RaycastHit2D Ghit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
+        
+        if (Mhit && Ghit)
+        {
+            gameobject_ore = Mhit.transform.gameObject;
+            _orestatus = gameobject_ore.GetComponent<oreStatus>();
+            
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                if (_Lcheck == true)
+                {
+                    Statuschange("Mine1L");
+                    StartCoroutine(WaitMineS(1));
+                }
+                else
+                {
+                Statuschange("Mine1R");
+                StartCoroutine(WaitMineS(1));
+                }
+            }
+            else if (Input.GetKeyUp(KeyCode.M))
+            {
+                if (_Lcheck == true)
+                {
+                    Statuschange("Mine3L");
+                    StartCoroutine(WaitMineF(1));
+                }
+                else
+                {
+                    Statuschange("Mine3R");
+                    StartCoroutine(WaitMineF(1));
+                }
+            }
+            else if (Input.GetKey(KeyCode.M) && _Mstart == true)
+            {
+                if (_Lcheck == true)
+                {
+                    Statuschange("Mine2L");
+                }
+                else
+                {
+                    Statuschange("Mine2R");
+                }
+            }
+        }
+    }
     void Move()
     {
         Vector2 start = this.transform.position;
+        Debug.DrawLine(start,start + _groundline);
         RaycastHit2D groundhit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
-        if (Input.GetKeyDown(KeyCode.J) && groundhit.collider)//jump
-        {
-
-        }
         if (groundhit.collider)//rightmove
         {
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -70,28 +141,47 @@ public class animation_spaceman : MonoBehaviour
     {
         switch (str)
         {
-            case "dashL":
-                _nowAnimation = 5;
+            case "Mine3L":_nowAnimation = 13;
                 break;
-            case "dashR":
-                _nowAnimation = 4;
+            case "Mine3R":_nowAnimation = 12;
                 break;
-            case "walkL":
-                _nowAnimation = 3;
+            case "Mine2L":_nowAnimation = 11;
                 break;
-            case "walkR":
-                _nowAnimation = 2;
+            case "Mine2R":_nowAnimation = 10;
                 break;
-            case "standL":
-                _nowAnimation = 1;
+            case "Mine1L": _nowAnimation = 9;
                 break;
-            case "standR":
-                _nowAnimation = 0;
+            case "Mine1R":_nowAnimation = 8;
                 break;
-            default:
-                _nowAnimation = 0;
+            case "jumpL": _nowAnimation = 7;
+                break;
+            case "jumpR": _nowAnimation = 6;
+                break;
+            case "dashL": _nowAnimation = 5;
+                break;
+            case "dashR": _nowAnimation = 4;
+                break;
+            case "walkL": _nowAnimation = 3;
+                break;
+            case "walkR": _nowAnimation = 2;
+                break;
+            case "standL": _nowAnimation = 1;
+                break;
+            case "standR": _nowAnimation = 0;
+                break;
+            default: _nowAnimation = 0;
                 break;
         }
         _anim.SetInteger("NowStatus", _nowAnimation);
+    }
+    IEnumerator WaitMineS(float flo)
+    {
+        yield return new WaitForSeconds(flo); 
+        _Mstart = true;
+    }
+    IEnumerator WaitMineF(float flo)
+    {
+        yield return new WaitForSeconds(flo);
+        _Mstart = false;
     }
 }

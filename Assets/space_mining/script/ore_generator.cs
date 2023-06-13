@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ore_generator : MonoBehaviour
 {
-    [SerializeField] int _oreHp = 4;
     // Start is called before the first frame update
     void Start()
     {
