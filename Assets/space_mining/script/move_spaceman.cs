@@ -64,7 +64,7 @@ public class move_spaceman : MonoBehaviour
                     _orestatus = gameobject_ore.GetComponent<oreStatus>();
                     _orestatus._oreDamage = true;
                     _time = 0;
-                    if (_orestatus._oreHP <= 0)
+                    if (_orestatus._NoworeHP <= 0)
                     {
                         _minestatus = false;
                     }

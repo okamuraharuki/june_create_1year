@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ore_generator : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
