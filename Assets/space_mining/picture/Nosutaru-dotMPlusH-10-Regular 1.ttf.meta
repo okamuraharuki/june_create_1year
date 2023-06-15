@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4b0b0e298f17f9c4baffdf16de6fab4d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Nosutaru-dot (M+)
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1e80485802640244da31dd7aa2c012b2, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
