@@ -9,6 +9,8 @@ public class animation_spaceman : MonoBehaviour
     [SerializeField] Vector2 _groundline = Vector2.down;
     [SerializeField] LayerMask _orelayer;
     [SerializeField] Vector2 _Mline = Vector2.right;
+    [SerializeField] float _boxhalflength = 0.4f;
+    [SerializeField] float _boxunderdistance = 0.78f;
     Animator _anim;
     Rigidbody2D _rb;
     public int _nowAnimation = 0;
@@ -25,11 +27,17 @@ public class animation_spaceman : MonoBehaviour
     }
     private void Update()
     {
-        Mine();
+        if (time_manager._NowTime > 0 && canvas_manager._gamestart == true)
+        {
+            Mine();
+        }
     }
     void FixedUpdate()
     {
-        Move();
+        if (time_manager._NowTime > 0 && canvas_manager._gamestart == true)
+        {
+            Move();
+        }
     }
     void Mine()
     {
@@ -43,10 +51,11 @@ public class animation_spaceman : MonoBehaviour
             _Mline = Vector2.right;
             _Lcheck = false;
         }
-        Vector2 start = this.transform.position;
-        Debug.DrawLine(start, start + _Mline);
-        RaycastHit2D Mhit = Physics2D.Linecast(start, start + _Mline, _orelayer);
-        RaycastHit2D Ghit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
+        Vector2 position = this.transform.position;
+        Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
+        Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
+        RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
+        RaycastHit2D Mhit = Physics2D.Linecast(position, position + _Mline, _orelayer);
         
         if (Mhit && Ghit)
         {
@@ -94,14 +103,16 @@ public class animation_spaceman : MonoBehaviour
     }
     void Move()
     {
-        Vector2 start = this.transform.position;
-        Debug.DrawLine(start,start + _groundline);
-        RaycastHit2D groundhit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
-        if (groundhit.collider)//rightmove
+        Vector2 position = this.transform.position;
+        Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
+        Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
+        Debug.DrawLine(start, end);
+        RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
+        if (Ghit.collider)//rightmove
         {
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
                     Statuschange("dashR");
                 }
@@ -111,11 +122,11 @@ public class animation_spaceman : MonoBehaviour
                 }
             }
         }
-        if (groundhit.collider)//rightmove
+        if (Ghit.collider)//rightmove
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {
-                    if (Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     {
                         Statuschange("dashL");
                     }

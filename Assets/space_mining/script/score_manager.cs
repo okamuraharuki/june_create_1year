@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class score_manager : MonoBehaviour
 {
-    public int _gscore = 0;
-    public int _rscore = 0;
-    public int _bscore = 0;
+    static public int _gscore = 0;
+    static public int _rscore = 0;
+    static public int _bscore = 0;
     Text _gtext;
     Text _rtext;
     Text _btext;
@@ -27,16 +27,28 @@ public class score_manager : MonoBehaviour
     public void Gscore()
     {
         _gscore += 1;
-        _gtext.text ="" + _gscore;
+        _gtext.text =_gscore.ToString();
     }
     public void Rscore()
     {
         _rscore += 1;
-        _rtext.text = "" + _rscore;
+        _rtext.text = _rscore.ToString();
     }
     public void Bscore()
     {
         _bscore += 1;
-        _btext.text = "" + _bscore;
+        _btext.text = _bscore.ToString();
+    }
+    static public int ScoreReturnG()
+    {
+        return _gscore;
+    }
+    static public int ScoreReturnR()
+    {
+        return _rscore;
+    }
+    static public int ScoreReturnB()
+    {
+        return _bscore;
     }
 }

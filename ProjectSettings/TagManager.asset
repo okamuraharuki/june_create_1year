@@ -12,6 +12,8 @@ TagManager:
   - bscore
   - randomore
   - brakestorn
+  - score
+  - startcount
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class oreStatus : MonoBehaviour
 {
-    public int _NoworeHP = 0;
+    static public int _NoworeHP = 0;
     [SerializeField] int _MaxoreHP = 6;
     public bool _oreDamage = false;
     GameObject scoreObject;

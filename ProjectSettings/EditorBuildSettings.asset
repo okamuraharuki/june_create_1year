@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/space_mining/Scenes/Debugscene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/space_mining/Scenes/Startscene.unity
+    guid: b3a2b6877335e2b40bcd1df3fef87cea
+  - enabled: 1
+    path: Assets/space_mining/Scenes/Gamescene.unity
+    guid: 1475c456d6221db46888bbf3c1e6528d
+  - enabled: 1
+    path: Assets/space_mining/Scenes/Scorescene.unity
+    guid: 7abfdc2ede7a1cf4480be4f732aa9eb0
   m_configObjects: {}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class move_spaceman : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class move_spaceman : MonoBehaviour
     Rigidbody2D _rb;
     [SerializeField] Vector2 _groundline = Vector2.down;
     [SerializeField] Vector2 _Mline = Vector2.right;
+    [SerializeField] float _boxhalflength = 0.4f;
+    [SerializeField] float _boxunderdistance = 0.78f;
     oreStatus _orestatus;
     float _time = -1;
     [SerializeField] float _interval = 3;
     animation_spaceman _noAnim;
     public bool _minestatus = false;
+    player_spawner _spawner;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -26,27 +30,35 @@ public class move_spaceman : MonoBehaviour
     }
     public void Update()
     {
-        if (_noAnim._nowAnimation % 2 != 0)
+        if(time_manager._NowTime > 0 && canvas_manager._gamestart == true)
         {
-            _Mline = Vector2.left;
+            if (_noAnim._nowAnimation % 2 != 0)
+            {
+                _Mline = Vector2.left;
+            }
+            else
+            {
+                _Mline = Vector2.right;
+            }
+            Jump();
+            Mine();
         }
-        else
-        {
-            _Mline = Vector2.right;
-        }
-        Jump();
-        Mine();
     }
     void FixedUpdate()
     {
-        Move();
+        if (time_manager._NowTime > 0 && canvas_manager._gamestart == true)
+        {
+            Move();
+        }
     }
     void Mine()
     {
-        Vector2 start = this.transform.position;
-        //Debug.DrawLine(start, start + _Mline);
-        RaycastHit2D Mhit = Physics2D.Linecast(start, start + _Mline, _orelayer);
-        RaycastHit2D Ghit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
+        Vector2 position = this.transform.position;
+        Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
+        Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
+        RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
+        Debug.DrawLine(position, position + _Mline); Debug.DrawLine(start, end);
+        RaycastHit2D Mhit = Physics2D.Linecast(position, position + _Mline, _orelayer);
         if (Mhit && Ghit)
         {
             if (Input.GetKeyUp(KeyCode.M))
@@ -64,7 +76,7 @@ public class move_spaceman : MonoBehaviour
                     _orestatus = gameobject_ore.GetComponent<oreStatus>();
                     _orestatus._oreDamage = true;
                     _time = 0;
-                    if (_orestatus._NoworeHP <= 0)
+                    if (oreStatus._NoworeHP <= 0)
                     {
                         _minestatus = false;
                     }
@@ -75,22 +87,24 @@ public class move_spaceman : MonoBehaviour
     void Jump()
     {
         _xscale = Input.GetAxisRaw("Horizontal");
-        Vector2 start = this.transform.position;
-        //Debug.DrawLine(start, start + _groundline);
-        RaycastHit2D groundhit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
-        if (Input.GetKeyDown(KeyCode.J) && groundhit.collider)//jump
+        Vector2 position = this.transform.position;
+        Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
+        Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
+        RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
+        if (Input.GetKeyDown(KeyCode.Space) && Ghit.collider)//jump
         {
             _rb.AddForce(Vector2.up * _jumppower, ForceMode2D.Impulse);
         }
     }
     void Move()
     {
-        Vector2 start = this.transform.position;
-        //Debug.DrawLine(start, start + _groundline);
-        RaycastHit2D groundhit = Physics2D.Linecast(start, start + _groundline, _groundlayer);
-        if (groundhit.collider)
+        Vector2 position = this.transform.position;
+        Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
+        Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
+        RaycastHit2D Ghit = Physics2D.Linecast(start,end, _groundlayer);
+        if (Ghit.collider)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             { 
                 _rb.AddForce(Vector2.right * _xscale * _walkpower * _dashpower, ForceMode2D.Force);
             }
