@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class oreStatus : MonoBehaviour
 {
-    static public int _NoworeHP = 0;
+    public int _NoworeHP = 0;
     [SerializeField] int _MaxoreHP = 6;
     public bool _oreDamage = false;
     GameObject scoreObject;
@@ -68,10 +68,6 @@ public class oreStatus : MonoBehaviour
             }
             
             _oreDamage = false;
-        }
-        else if(this.gameObject.CompareTag("brakestorn"))
-        {
-            Destroy(this.gameObject);
         }
     }
 }

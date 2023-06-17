@@ -43,7 +43,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.48543966, g: 0.50210834, b: 0.5283019, a: 0}
+  m_BackGroundColor: {r: 0.36947313, g: 0.4811321, b: 0.39118052, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5777052515445319574}
   - component: {fileID: 8286426660793870172}
   - component: {fileID: 2765596186336913957}
-  - component: {fileID: 5163917619312887412}
+  - component: {fileID: 5007615089752740587}
   - component: {fileID: 197924179471024766}
   - component: {fileID: 1023047011838150322}
   - component: {fileID: 4801514708230712579}
@@ -203,7 +203,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &5163917619312887412
+--- !u!61 &5007615089752740587
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,7 +235,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -246,7 +246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.71, y: 1.5}
+  m_Size: {x: 0.65, y: 1.45}
   m_EdgeRadius: 0
 --- !u!50 &197924179471024766
 Rigidbody2D:
@@ -295,7 +295,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _Mline: {x: 1, y: 0}
-  _boxhalflength: 0.4
+  _boxhalflength: 0.33
   _boxunderdistance: 0.78
   _nowAnimation: 0
 --- !u!114 &4801514708230712579
@@ -321,7 +321,7 @@ MonoBehaviour:
   _jumppower: 5
   _groundline: {x: 0, y: -1}
   _Mline: {x: 1, y: 0}
-  _boxhalflength: 0.4
+  _boxhalflength: 0.33
   _boxunderdistance: 0.78
   _interval: 1
   _minestatus: 0

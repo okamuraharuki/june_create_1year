@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6375420825017980643}
   - component: {fileID: 3339711903125553396}
   - component: {fileID: 1630700376927406888}
+  - component: {fileID: 1517856974433656986}
   - component: {fileID: 576803999939078855}
   m_Layer: 8
   m_Name: redore
@@ -101,6 +102,18 @@ MonoBehaviour:
   _NoworeHP: 0
   _MaxoreHP: 7
   _oreDamage: 0
+--- !u!114 &1517856974433656986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657106581438370594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97162558a72a8e46b4b7a21396824aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!60 &576803999939078855
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 9032635138302515715}
   - component: {fileID: 2999453692688758634}
   - component: {fileID: 1881003308175384511}
+  - component: {fileID: 5819527752031611377}
   - component: {fileID: 195597167440269223}
+  - component: {fileID: 1432357015691845777}
   m_Layer: 8
   m_Name: greenore
   m_TagString: greenore
@@ -32,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2999453692688758634
 SpriteRenderer:
@@ -98,9 +100,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092f47f1fd212e3478ea0104684d6c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NoworeHP: 0
   _MaxoreHP: 9
   _oreDamage: 0
+--- !u!114 &5819527752031611377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107699046109648871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97162558a72a8e46b4b7a21396824aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!60 &195597167440269223
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -166,3 +179,24 @@ PolygonCollider2D:
       - {x: 0.328125, y: -0.3359375}
       - {x: 0.328125, y: -0.0625}
   m_UseDelaunayMesh: 0
+--- !u!95 &1432357015691845777
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107699046109648871}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fb380982d878ab4caf12dacdbccc8c5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

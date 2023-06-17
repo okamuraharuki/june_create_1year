@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
-public class animation_spaceman : MonoBehaviour
+public class anim_spaceman : MonoBehaviour
 {
     [SerializeField] LayerMask _groundlayer = 0;
     [SerializeField] Vector2 _groundline = Vector2.down;
@@ -55,9 +54,9 @@ public class animation_spaceman : MonoBehaviour
         Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
         Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
         RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
+        RaycastHit2D GOREhit = Physics2D.Linecast(start, end, _orelayer);
         RaycastHit2D Mhit = Physics2D.Linecast(position, position + _Mline, _orelayer);
-        
-        if (Mhit && Ghit)
+        if (Mhit && Ghit || Mhit && GOREhit)
         {
             gameobject_ore = Mhit.transform.gameObject;
             _orestatus = gameobject_ore.GetComponent<oreStatus>();
@@ -106,9 +105,10 @@ public class animation_spaceman : MonoBehaviour
         Vector2 position = this.transform.position;
         Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
         Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
-        Debug.DrawLine(start, end);
+        //Debug.DrawLine(start, end);
         RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
-        if (Ghit.collider)//rightmove
+        RaycastHit2D GOREhit = Physics2D.Linecast(start, end, _orelayer);
+        if (Ghit.collider || GOREhit.collider)//rightmove
         {
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
@@ -122,7 +122,7 @@ public class animation_spaceman : MonoBehaviour
                 }
             }
         }
-        if (Ghit.collider)//rightmove
+        if (Ghit.collider || GOREhit.collider)//rightmove
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {

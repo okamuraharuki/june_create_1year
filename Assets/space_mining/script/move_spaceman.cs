@@ -20,13 +20,13 @@ public class move_spaceman : MonoBehaviour
     oreStatus _orestatus;
     float _time = -1;
     [SerializeField] float _interval = 3;
-    animation_spaceman _noAnim;
+    anim_spaceman _noAnim;
     public bool _minestatus = false;
     player_spawner _spawner;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _noAnim = this.gameObject.GetComponent<animation_spaceman>();
+        _noAnim = this.gameObject.GetComponent<anim_spaceman>();
     }
     public void Update()
     {
@@ -57,9 +57,10 @@ public class move_spaceman : MonoBehaviour
         Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
         Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
         RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
-        Debug.DrawLine(position, position + _Mline); Debug.DrawLine(start, end);
+        RaycastHit2D GOREhit = Physics2D.Linecast(start, end, _orelayer);
+        //Debug.DrawLine(position, position + _Mline); Debug.DrawLine(start, end);
         RaycastHit2D Mhit = Physics2D.Linecast(position, position + _Mline, _orelayer);
-        if (Mhit && Ghit)
+        if (Mhit && Ghit || GOREhit && Mhit)
         {
             if (Input.GetKeyUp(KeyCode.M))
             {
@@ -76,7 +77,7 @@ public class move_spaceman : MonoBehaviour
                     _orestatus = gameobject_ore.GetComponent<oreStatus>();
                     _orestatus._oreDamage = true;
                     _time = 0;
-                    if (oreStatus._NoworeHP <= 0)
+                    if (_orestatus._NoworeHP <= 0)
                     {
                         _minestatus = false;
                     }
@@ -91,7 +92,8 @@ public class move_spaceman : MonoBehaviour
         Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
         Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
         RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
-        if (Input.GetKeyDown(KeyCode.Space) && Ghit.collider)//jump
+        RaycastHit2D GOREhit = Physics2D.Linecast(start, end, _orelayer);
+        if (Input.GetKeyDown(KeyCode.Space) && Ghit.collider || Input.GetKeyDown(KeyCode.Space) && GOREhit.collider)//jump
         {
             _rb.AddForce(Vector2.up * _jumppower, ForceMode2D.Impulse);
         }
@@ -102,7 +104,8 @@ public class move_spaceman : MonoBehaviour
         Vector2 start = new Vector2(position.x - _boxhalflength, position.y - _boxunderdistance);
         Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
         RaycastHit2D Ghit = Physics2D.Linecast(start,end, _groundlayer);
-        if (Ghit.collider)
+        RaycastHit2D GOREhit = Physics2D.Linecast(start, end, _orelayer);
+        if (Ghit.collider || GOREhit.collider)
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             { 
