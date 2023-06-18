@@ -25,6 +25,7 @@ public class canvas_manager : MonoBehaviour
             _startcountback.SetActive(true);
             _startcount.SetActive(true);
             _startcounttext.text = "finish";
+            _gamestart = false;
             StartCoroutine(Loadscorescene());
         }
     }

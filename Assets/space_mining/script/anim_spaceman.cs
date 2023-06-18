@@ -125,16 +125,16 @@ public class anim_spaceman : MonoBehaviour
         if (Ghit.collider || GOREhit.collider)//rightmove
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                    {
-                        Statuschange("dashL");
-                    }
-                    else
-                    {
-                        Statuschange("walkL");
-                    }
+                    Statuschange("dashL");
                 }
+                else
+                {
+                    Statuschange("walkL");
+                }
+            }
         }
         if (_rb.velocity.x <= 0.5f && _rb.velocity.x >= -0.5f)//anim_static
         {

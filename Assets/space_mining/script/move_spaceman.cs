@@ -58,7 +58,7 @@ public class move_spaceman : MonoBehaviour
         Vector2 end = new Vector2(position.x + _boxhalflength, position.y - _boxunderdistance);
         RaycastHit2D Ghit = Physics2D.Linecast(start, end, _groundlayer);
         RaycastHit2D GOREhit = Physics2D.Linecast(start, end, _orelayer);
-        //Debug.DrawLine(position, position + _Mline); Debug.DrawLine(start, end);
+        Debug.DrawLine(position, position + _Mline); Debug.DrawLine(start, end);
         RaycastHit2D Mhit = Physics2D.Linecast(position, position + _Mline, _orelayer);
         if (Mhit && Ghit || GOREhit && Mhit)
         {
