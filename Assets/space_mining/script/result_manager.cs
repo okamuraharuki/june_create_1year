@@ -19,8 +19,8 @@ public class result_manager : MonoBehaviour
     int _rscore;
     int _bscore;
     int _resultscore;
-    [SerializeField] int _gpoint = 400;
-    [SerializeField] int _rpoint = 700;
+    [SerializeField] int _gpoint = 100;
+    [SerializeField] int _rpoint = 300;
     [SerializeField] int _bpoint = 1100;
     [SerializeField] float _waittime = 1;
     void Start()
@@ -43,7 +43,7 @@ public class result_manager : MonoBehaviour
             _titleback.SetActive(true);
             if (Input.anyKey)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(0);
             }
         }
         else if(_resultbool == true)

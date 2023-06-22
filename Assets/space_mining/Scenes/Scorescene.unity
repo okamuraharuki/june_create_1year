@@ -1143,8 +1143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df7f029db11e784fac9cb400b95334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gpoint: 300
-  _rpoint: 800
+  _gpoint: 100
+  _rpoint: 300
   _bpoint: 1100
   _waittime: 1
 --- !u!4 &2110282273

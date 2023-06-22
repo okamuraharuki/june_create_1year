@@ -10,11 +10,11 @@ class scene_manager : MonoBehaviour
     }
     public void LoadsceneGamescene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void LoadsceneScorescene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
     public void Quit()
     {

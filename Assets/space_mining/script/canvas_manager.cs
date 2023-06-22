@@ -55,6 +55,6 @@ public class canvas_manager : MonoBehaviour
     IEnumerator Loadscorescene()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 }
