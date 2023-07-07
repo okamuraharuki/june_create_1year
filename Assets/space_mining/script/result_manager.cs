@@ -15,19 +15,18 @@ public class result_manager : MonoBehaviour
     Text _btext;
     Text _resulttext;
     GameObject _titleback;
-    int _gscore;
-    int _rscore;
-    int _bscore;
+    int _gscoreResult;
+    int _rscoreResult;
+    int _bscoreResult;
     int _resultscore;
     [SerializeField] int _gpoint = 100;
     [SerializeField] int _rpoint = 300;
     [SerializeField] int _bpoint = 1100;
-    [SerializeField] float _waittime = 1;
     void Start()
     {
-        _gscore = score_manager.ScoreReturnG();
-        _rscore = score_manager.ScoreReturnR();
-        _bscore = score_manager.ScoreReturnB();
+        _gscoreResult = score_manager._gscore;
+        _rscoreResult = score_manager._rscore;
+        _bscoreResult = score_manager._bscore;
         _gtext = GameObject.FindWithTag("gscore").GetComponent<Text>();
         _rtext = GameObject.FindWithTag("rscore").GetComponent<Text>();
         _btext = GameObject.FindWithTag("bscore").GetComponent<Text>();
@@ -48,7 +47,7 @@ public class result_manager : MonoBehaviour
         }
         else if(_resultbool == true)
         {
-            _resultscore = _gscore * _gpoint + _rscore * _rpoint + _bscore * _bpoint;
+            _resultscore = _gscoreResult * _gpoint + _rscoreResult * _rpoint + _bscoreResult * _bpoint;
             if (_resultscore == 0)
             {
                 _resulttext.text = "SCORE 000000";
@@ -81,19 +80,19 @@ public class result_manager : MonoBehaviour
     }
     IEnumerator GscoreUI()
     {
-        _gtext.text = "" + _gscore;
+        _gtext.text = "" + _gscoreResult;
         yield return new WaitForSeconds(1);
         _rbool = true;
     }
     IEnumerator RscoreUI()
     {
-        _rtext.text = "" + _rscore;
+        _rtext.text = "" + _rscoreResult;
         yield return new WaitForSeconds(1);
         _bbool = true;
     }
     IEnumerator BscoreUI()
     {
-        _btext.text = "" + _bscore;
+        _btext.text = "" + _bscoreResult;
         yield return new WaitForSeconds(1);
         _resultbool = true;
     }

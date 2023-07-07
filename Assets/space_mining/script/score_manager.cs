@@ -39,16 +39,4 @@ public class score_manager : MonoBehaviour
         _bscore += 1;
         _btext.text = _bscore.ToString();
     }
-    static public int ScoreReturnG()
-    {
-        return _gscore;
-    }
-    static public int ScoreReturnR()
-    {
-        return _rscore;
-    }
-    static public int ScoreReturnB()
-    {
-        return _bscore;
-    }
 }
