@@ -48,26 +48,8 @@ public class result_manager : MonoBehaviour
         else if(_resultbool == true)
         {
             _resultscore = _gscoreResult * _gpoint + _rscoreResult * _rpoint + _bscoreResult * _bpoint;
-            if (_resultscore == 0)
-            {
-                _resulttext.text = "SCORE 000000";
-                StartCoroutine(ResultscoreUI());
-            }
-            else if (_resultscore < 1000)
-            {
-                _resulttext.text = "SCORE 000" + _resultscore;
-                StartCoroutine(ResultscoreUI());
-            }
-            else if (_resultscore < 10000)
-            {
-                _resulttext.text = "SCORE 00" + _resultscore;
-                StartCoroutine(ResultscoreUI());
-            }
-            else if (_resultscore < 100000)
-            {
-                _resulttext.text = "SCORE 0" + _resultscore;
-                StartCoroutine(ResultscoreUI());
-            }
+            _resulttext.text = "SCORE " + _resultscore.ToString("d6");
+            StartCoroutine(ResultscoreUI());
         }
         else if (_bbool == true)
         {

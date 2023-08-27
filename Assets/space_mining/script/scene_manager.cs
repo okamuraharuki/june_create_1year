@@ -10,6 +10,9 @@ class scene_manager : MonoBehaviour
     }
     public void LoadsceneGamescene()
     {
+        score_manager._gscore = 0;
+        score_manager._rscore = 0;
+        score_manager._bscore = 0;
         SceneManager.LoadScene(1);
     }
     public void LoadsceneScorescene()
